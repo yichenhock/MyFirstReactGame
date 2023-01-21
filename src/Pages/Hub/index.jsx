@@ -305,7 +305,7 @@ const Hub = () => {
 
                             <div style={{maxWidth: '10vw'}} 
                             >
-                                <p style={{maxWidth: '10vw'}}>{"Score: " + score}</p>
+                                <p style={{maxWidth: '10vw'}}>{"score: " + score}</p>
                             </div>
 
                             <div 
@@ -327,7 +327,7 @@ const Hub = () => {
                     <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
                             
                         <div style={{flexDirection: 'column', marginLeft: 10}}>
-                                <p>Opponent's board: </p>
+                                <p>opponent's board: </p>
                             
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
