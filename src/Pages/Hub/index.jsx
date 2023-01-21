@@ -162,7 +162,7 @@ const Hub = () => {
         } else {
             console.log("Player 2")
             setPlayer(2);
-            setOpponent(2)
+            setOpponent(1)
         }
     }, [])
 
@@ -204,12 +204,14 @@ const Hub = () => {
  
     const listener = async () => { 
     //return; 
-        if(turn === player || turn === 0) { 
+        if(turn === player) { 
             //your turn
             console.log("Waiting for you to finish turn")
+            console.log(turn)
         } else {
             //opponent turn
             console.log("Awaiting opponent");
+            console.log(turn)
             var res = await getStateFunction();
         }
     }
