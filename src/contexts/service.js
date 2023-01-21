@@ -1,5 +1,3 @@
-const IP = 'http://127.0.0.1:5000';
-
 var HEADER = new Headers({
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -7,17 +5,32 @@ var HEADER = new Headers({
     'Refresh-Token': '',
 });
 
-function login(user) {
+function getState() {
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
+        headers: HEADER,
+        redirect: 'follow',
+    };
+    return fetch("http://3.10.203.36/api/get/deck", requestOptions)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson;
+        })
+        .catch((error) => {
+            return { err: error };
+        });
+}
+
+function updateState(state) {
+    const requestOptions = {
+        method: 'PATCH',
         headers: HEADER,
         redirect: 'follow',
         body: JSON.stringify({
-            email: user.email,
-            password: user.password 
+            state: state
         })
     };
-    return fetch("https://artfol.club/api/user/login", requestOptions)
+    return fetch("http://3.10.203.36/api/get/update/deck", requestOptions)
         .then((response) => response.json())
         .then((responseJson) => {
             return responseJson;
@@ -28,5 +41,6 @@ function login(user) {
 }
 
 export { 
-    login,
+    getState,
+    updateState,
 };

@@ -1,0 +1,28 @@
+.div {
+	height: 100%;
+	width: 100%;
+}
+
+div {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+img {
+	object-fit: cover;
+}
+
+.tile:hover {
+	cursor: pointer;
+	opacity: 0.4;
+	background-color: red !important;
+}
+
+.card {
+	transition: all 0.1s ease-in-out;
+}
+
+.card:hover {
+	transform: scale(1.15); 
+	transition: all 0.1s ease-in-out;
+}
