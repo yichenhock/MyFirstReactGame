@@ -248,7 +248,11 @@ const Hub = () => {
         const res = await getState();
         setTurn(res.game_state.turn)
         console.log(res.game_state)
-            setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board})
+        if(req.game_state.subtract) {
+            setScore(score - 1)
+            setState({...state, subtract: false })
+        }
+            setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board, })
         if(res.game_state.turn === player) {
             getRandomCard();
             setAction(0);
@@ -267,6 +271,9 @@ const Hub = () => {
                     board[i][k].state = action.description
                 }
             }
+        }
+        if(action.type === 'action') {
+            setState({...state, subtract: true});
         }
         if(player === 1) {
         setState({...state, p1board: board});
