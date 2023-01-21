@@ -194,6 +194,9 @@ const Hub = () => {
                 if(action.type === 'object') {
                     setScore(score + 1)
                 }
+                if(action.type === 'action') {
+                    setState({...state, subtract: true});
+                }
                 curr_cards.splice(m, 1);
             }
         }
@@ -271,9 +274,6 @@ const Hub = () => {
                     board[i][k].state = action.description
                 }
             }
-        }
-        if(action.type === 'action') {
-            setState({...state, subtract: true});
         }
         if(player === 1) {
         setState({...state, p1board: board});
