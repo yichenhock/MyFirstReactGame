@@ -254,7 +254,6 @@ const Hub = () => {
     }
 
     const placeObject = (id) => {
-        setScore(score + 1)
         if(player === 1) {
             var board = state.p1board;
         } else {
@@ -263,6 +262,7 @@ const Hub = () => {
         for(let i = 0; i< 12; i++) {
             for(let k = 0; k< 12; k++) {
                 if(board[i][k].id === id) {
+                    setScore(score + 1)
                     board[i][k].state = action.description
                 }
             }
