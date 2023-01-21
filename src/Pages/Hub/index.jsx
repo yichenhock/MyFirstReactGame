@@ -158,11 +158,13 @@ const Hub = () => {
         if(res.toLowerCase() === 'create') {
             console.log("Player 1")
             setPlayer(1);
+            setTurn(1);
             setOpponent(2);
         } else {
             console.log("Player 2")
             setPlayer(2);
             setOpponent(1)
+            setTurn(2);
         }
     }, [])
 
