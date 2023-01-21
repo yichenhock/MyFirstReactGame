@@ -299,14 +299,12 @@ const Hub = () => {
                             >
                                 <p style={{maxWidth: '10vw'}}>Current Action: </p>
                                 <br/>
-                                <p style={{maxWidth: '10vw'}}>{score}</p>
+                                <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
                             </div>
 
                             <div style={{maxWidth: '10vw'}} 
                             >
-                                <p style={{maxWidth: '10vw'}}>Score: </p>
-                                <br/>
-                                <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
+                                <p style={{maxWidth: '10vw'}}>{"Score: " + score}</p>
                             </div>
 
                             <div 
