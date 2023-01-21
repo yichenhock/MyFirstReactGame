@@ -28,23 +28,20 @@ import chaircard from "../../assets/cards/objectcards/chair-card.png";
 import duckcard from "../../assets/cards/objectcards/duck-card.png";
 import flowerscard from "../../assets/cards/objectcards/flower-card.png";
 import stoolcard from "../../assets/cards/objectcards/stool-card.png";
+import stealcard from "../../assets/cards/actioncards/steal-card.png";
+import dogcard from "../../assets/cards/actioncards/dog-card.png";
 
 const setTimeoutPromise = timeout => new Promise(resolve => {        
   setTimeout(resolve, timeout);
 });
 const _BLACK_ = '#3b1735';
 const _CARDS_ = [
-{id: 0, type: 'action', description: 'Hire a burglar', string: 'A burglar will steal one of your opponent\'s objects'},
-{id: 1, type: 'action', description: 'Hire a dog', string: 'A dog will put mud on your opponent\'s deck'},
-{id: 2, type: 'action', description: 'Clean your deck', string: 'Clean your deck'},
-{id: 3, type: 'object', description: 'chair', string: 'Place a chair'},
-{id: 4, type: 'object', description: 'duck', string: 'Place a duck'},
-{id: 5, type: 'object', description: 'flowers', string: 'Place a flowers'},
-{id: 6, type: 'object', description: 'stool', string: 'Place a stool'},
-{id: 7, type: 'object', description: 'chair', string: 'Place a chair'},
-{id: 8, type: 'object', description: 'chair', string: 'Place a chair'},
-{id: 9, type: 'object', description: 'chair', string: 'Place a chair'},
-{id: 10, type: 'object', description: 'chair', string: 'Place a chair'},
+{id: 0, type: 'action', description: 'Hire a burglar', string: 'A burglar will steal one of your opponent\'s objects', card: 'stealcard'},
+{id: 1, type: 'action', description: 'Hire a dog', string: 'A dog will put mud on your opponent\'s deck', card: 'dogcard'},
+{id: 3, type: 'object', description: 'chair', string: 'Place a chair', card: 'chaircard'},
+{id: 4, type: 'object', description: 'duck', string: 'Place a duck', card: 'duckcard'},
+{id: 5, type: 'object', description: 'flowers', string: 'Place a flowers', card: 'flowerscard'},
+{id: 6, type: 'object', description: 'stool', string: 'Place a stool', card: 'stoolcard'},
 ]
 
 const Board = (props) => {
@@ -62,17 +59,17 @@ const Board = (props) => {
                                 {item.state === 'chair' ?
                                     <div 
                                         className={classnames(styles.tile_background)} 
-                                        style={{backgroundImage: `url(${chair})`, width: _SIZE_, height: _SIZE_ }}>
+                                        style={{backgroundSize: 'cover',backgroundImage: `url(${chair})`, width: _SIZE_, height: _SIZE_ }}>
                                     </div>
                                     : item.state === 'duck' ?
                                     <div 
                                         className={classnames(styles.tile_background)} 
-                                        style={{backgroundImage: `url(${duck})`, width: _SIZE_, height: _SIZE_ }}>
+                                        style={{backgroundSize: 'cover',backgroundImage: `url(${duck})`, width: _SIZE_, height: _SIZE_ }}>
                                     </div>
                                     : item.state === 'flowers' ?
                                     <div 
                                         className={classnames(styles.tile_background)} 
-                                        style={{backgroundImage: `url(${flowers})`, width: _SIZE_, height: _SIZE_ }}>
+                                        style={{backgroundSize: 'cover',backgroundImage: `url(${flowers})`, width: _SIZE_, height: _SIZE_ }}>
                                     </div>
                                     : item.state === 'stool' ?
                                     <div 
@@ -82,7 +79,7 @@ const Board = (props) => {
                                     : item.state === 'chair' ?
                                     <div 
                                         className={classnames(styles.tile_background)} 
-                                        style={{backgroundImage: `url(${chair})`, width: _SIZE_, height: _SIZE_ }}>
+                                        style={{backgroundSize: 'cover',backgroundImage: `url(${chair})`, width: _SIZE_, height: _SIZE_ }}>
                                     </div>
                                     : 
                                     null
@@ -142,8 +139,8 @@ const Board = (props) => {
 const Hub = () => {
     const [state, setState] = useState({
         turn: 1,
-        myBoard: [],
-        yourBoard: [],
+        p1board: [],
+        p2board: [],
     });
     const [cards, setCards] = useState([
     ]);
@@ -232,18 +229,14 @@ const Hub = () => {
             board.push(row);
             row = [];
         }
-        setState({...state, myBoard: board, yourBoard: board});
+        setState({...state, p1board: board, p2board: board});
     }
 
     const getStateFunction = async() => {
         const res = await getState();
         setTurn(res.game_state.turn)
         console.log(res.game_state)
-        if(player === 1) {
-            setState({...state, myBoard: res.game_state.myBoard, yourBoard: res.game_state.yourBoard})
-        } else {
-            setState({...state, yourBoard: res.game_state.myBoard, myBoard: res.game_state.yourBoard})
-        }
+            setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board})
 
         if(res.game_state.turn === player) {
             getRandomCard();
@@ -253,7 +246,11 @@ const Hub = () => {
 
     const placeObject = (id) => {
         console.log(action)
-        var board = state.myBoard;
+        if(player === 1) {
+            var board = state.p1board;
+        } else {
+            var board = state.p2board;
+        }
         for(let i = 0; i< 12; i++) {
             for(let k = 0; k< 12; k++) {
                 if(board[i][k].id === id) {
@@ -261,7 +258,11 @@ const Hub = () => {
                 }
             }
         }
-        setState({...state, myBoard: board});
+        if(player === 1) {
+        setState({...state, p1board: board});
+        } else {
+        setState({...state, p2board: board});
+        }
         if(action !== 0) {
             removeCard();
         }
@@ -297,7 +298,7 @@ const Hub = () => {
                     <div style={{width: MAINWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
-                            <Board blue={player !== 1} placeObject={placeObject} board={state.myBoard}/>
+                            <Board blue={player !== 1} placeObject={placeObject} board={player === 1 ? state.p1board : state.p2board}/>
                         </div>
 
                     </div>
@@ -308,7 +309,7 @@ const Hub = () => {
                             
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
-                            <Board small blue={player === 1} board={state.yourBoard}/>
+                            <Board small blue={player === 1} board={player === 1 ? state.p2board : state.p1board}/>
                         </div>
 
                         </div>
@@ -319,12 +320,11 @@ const Hub = () => {
                 
 
                     {cards.map((item, index) => (
-
                         <img 
-                            src={chaircard}
+                            src={item.card}
                             onClick={() => select(item)}
                             className={classnames(styles.card)} 
-                            style={{margin: 20, width: 120, height: 200, backgroundColor: 'tan'}}
+                            style={{margin: 20, width: 110, height: 200}}
                         >
                             
                         </img>
