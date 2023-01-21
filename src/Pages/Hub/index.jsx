@@ -298,7 +298,7 @@ const Hub = () => {
                         <div style={{flexDirection: 'column', position: 'absolute', top: 140, left: 40}}>
                             <div style={{maxWidth: '10vw'}} 
                             >
-                                <p style={{maxWidth: '10vw'}}>Current Action: </p>
+                                <p style={{maxWidth: '10vw'}}>current action: </p>
                                 <br/>
                                 <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
                             </div>
