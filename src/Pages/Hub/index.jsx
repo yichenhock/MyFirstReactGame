@@ -44,6 +44,12 @@ const _CARDS_ = [
 {id: 4, type: 'object', description: 'duck', string: 'Place a duck', card: 'duckcard'},
 {id: 5, type: 'object', description: 'flowers', string: 'Place a flowers', card: 'flowerscard'},
 {id: 6, type: 'object', description: 'stool', string: 'Place a stool', card: 'stoolcard'},
+{id: 0, type: 'action', description: 'Hire a burglar', string: 'A burglar will steal one of your opponent\'s objects', card: 'stealcard'},
+{id: 1, type: 'action', description: 'Hire a dog', string: 'A dog will put mud on your opponent\'s deck', card: 'dogcard'},
+{id: 3, type: 'object', description: 'chair', string: 'Place a chair', card: 'chaircard'},
+{id: 4, type: 'object', description: 'duck', string: 'Place a duck', card: 'duckcard'},
+{id: 5, type: 'object', description: 'flowers', string: 'Place a flowers', card: 'flowerscard'},
+{id: 6, type: 'object', description: 'stool', string: 'Place a stool', card: 'stoolcard'},
 ]
 
 const Board = (props) => {
@@ -150,6 +156,7 @@ const Hub = () => {
     const [player, setPlayer] = useState(0);
     const [opponent, setOpponent] = useState(0);
     const [action, setAction] = useState(0);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         //getStateFunction();
@@ -239,7 +246,7 @@ const Hub = () => {
         setTurn(res.game_state.turn)
         console.log(res.game_state)
             setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board})
-
+            console.log("TURN " + res.game_state.turn)
         if(res.game_state.turn === player) {
             getRandomCard();
             setAction(0);
@@ -247,7 +254,7 @@ const Hub = () => {
     }
 
     const placeObject = (id) => {
-        console.log(action)
+        setScore(score + 1)
         if(player === 1) {
             var board = state.p1board;
         } else {
@@ -291,6 +298,13 @@ const Hub = () => {
                             <div style={{maxWidth: '10vw'}} 
                             >
                                 <p style={{maxWidth: '10vw'}}>Current Action: </p>
+                                <br/>
+                                <p style={{maxWidth: '10vw'}}>{score}</p>
+                            </div>
+
+                            <div style={{maxWidth: '10vw'}} 
+                            >
+                                <p style={{maxWidth: '10vw'}}>Score: </p>
                                 <br/>
                                 <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
                             </div>
