@@ -26,7 +26,7 @@ import treehouse from "../../assets/objects/treehouse.png";
 
 import chaircard from "../../assets/cards/objectcards/chair-card.png";
 import duckcard from "../../assets/cards/objectcards/duck-card.png";
-import flowerscard from "../../assets/cards/objectcards/flower-card.png";
+import flowercard from "../../assets/cards/objectcards/flower-card.png";
 import stoolcard from "../../assets/cards/objectcards/stool-card.png";
 import stealcard from "../../assets/cards/actioncards/steal-card.png";
 import dogcard from "../../assets/cards/actioncards/dog-card.png";
@@ -320,14 +320,57 @@ const Hub = () => {
                 
 
                     {cards.map((item, index) => (
+                        item.card === 'dogcard' ? 
                         <img 
-                            src={item.card}
+                            src={dogcard}
                             onClick={() => select(item)}
                             className={classnames(styles.card)} 
-                            style={{margin: 20, width: 110, height: 200}}
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
                         >
-                            
                         </img>
+                        :item.card === 'stealcard' ? 
+                        <img 
+                            src={stealcard}
+                            onClick={() => select(item)}
+                            className={classnames(styles.card)} 
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
+                        >
+                        </img>
+                        :item.card === 'stoolcard' ? 
+                        <img 
+                            src={stoolcard}
+                            onClick={() => select(item)}
+                            className={classnames(styles.card)} 
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
+                        >
+                        </img>
+                        :item.card === 'flowercard' ? 
+                        <img 
+                            src={flowercard}
+                            onClick={() => select(item)}
+                            className={classnames(styles.card)} 
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
+                        >
+                        </img>
+                        :item.card === 'duckcard' ? 
+                        <img 
+                            src={duckcard}
+                            onClick={() => select(item)}
+                            className={classnames(styles.card)} 
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
+                        >
+                        </img>
+                        :item.card === 'chaircard' ? 
+                        <img 
+                            src={chaircard}
+                            onClick={() => select(item)}
+                            className={classnames(styles.card)} 
+                            style={{margin: 20, width: 200*(80/96), height: 200}}
+                        >
+                        </img>
+                        :
+                        null
+                        
                     ))}
 
 
