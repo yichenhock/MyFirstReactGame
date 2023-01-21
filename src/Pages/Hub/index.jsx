@@ -49,7 +49,7 @@ const _CARDS_ = [
 const Board = (props) => {
     const _HOUSE_ = props.small ? 240 : 464;
     const _BOARD_ = props.small ? 240 : 464;
-    const _SIZE_ = props.small ? 16 : 32;
+    const _SIZE_ = props.small ? 32 : 32;
 
     return(
         <div style={{width: '100%', height: '100%', justifyContent: 'center', position: 'relative', zIndex: 3, marginTop: _SIZE_}}>
@@ -288,7 +288,7 @@ const Hub = () => {
                                 style={{cursor: 'pointer', backgroundColor: _BLACK_, paddingLeft: 25, width: '100%'}}
                                 onClick={() => endTurn()}
                             >
-                                <p style={{ color: 'white',margin: 6,alignSelf: 'center'}}>{turn !== player ? 'End turn' : 'Waiting'}</p>
+                                <p style={{ color: 'white',margin: 6,alignSelf: 'center'}}>{turn == player ? 'End turn' : 'Waiting'}</p>
                             </div>
                         </div>
 
