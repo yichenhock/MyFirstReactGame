@@ -256,7 +256,7 @@ const Hub = () => {
         setTurn(res.game_state.turn)
         console.log(res.game_state)
         if(res.game_state.subtract) {
-            setScore(score - 1)
+            //setScore(score - 1)
             setState({...state, subtract: false })
         }
             setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board, })
