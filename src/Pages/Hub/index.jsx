@@ -275,7 +275,7 @@ const Hub = () => {
     const MAINWIDTH = 50;
     const SIDEWIDTH = (100 - MAINWIDTH)/2;
     return (
-        <div style={{width: '100vw', height: '100vh', backgroundColor: '#fff'}}>
+        <div style={{width: '100vw', height: '100vh', backgroundColor: '#404040'}}>
         <div style={{height: 100, width: '100%', backgroundColor: '#404040'}}>
 
                         <img 
@@ -290,7 +290,7 @@ const Hub = () => {
                         <div style={{flexDirection: 'column', position: 'absolute', top: 140, left: 40}}>
                             <div style={{maxWidth: '10vw'}} 
                             >
-                                <p style={{maxWidth: '10vw'}}>Current Action: eeeeeeeeee eeeeeeee eeeeeee  eeeeeeeeeee ee eeeee</p>
+                                <p style={{maxWidth: '10vw'}}>Current Action: </p>
                                 <br/>
                                 <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
                             </div>
