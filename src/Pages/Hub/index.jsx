@@ -191,6 +191,9 @@ const Hub = () => {
         var curr_cards = cards;
         for(let m = 0; m < curr_cards.length; m++) {
             if(curr_cards[m].id === action.id) {
+                if(action.type === 'object') {
+                    setScore(score + 1)
+                }
                 curr_cards.splice(m, 1);
             }
         }
@@ -262,7 +265,6 @@ const Hub = () => {
         for(let i = 0; i< 12; i++) {
             for(let k = 0; k< 12; k++) {
                 if(board[i][k].id === id) {
-                    setScore(score + 1)
                     board[i][k].state = action.description
                 }
             }
