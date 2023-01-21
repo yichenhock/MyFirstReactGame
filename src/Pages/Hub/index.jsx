@@ -176,6 +176,10 @@ const Hub = () => {
     }, [])
 
     useEffect(() => {
+        if(score < 0) window.alert('YOU LOSE!')
+    }, [score])
+
+    useEffect(() => {
         const intervalId = setInterval(() => {
             listener();
         }, 2000)
