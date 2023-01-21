@@ -3,6 +3,8 @@ import styles from "./Hub.module.scss";
 import classnames from "classnames";
 import { getState, updateState } from "../../contexts/service";
 
+import title from "../../assets/ui/title.png";
+
 import deck from "../../assets/deck.png";
 import house from "../../assets/house.png";
 import otherhouse from "../../assets/otherhouse.png";
@@ -55,7 +57,7 @@ const Board = (props) => {
                 {props.board.map((item, index) => (
                     <div style={{flexDirection: 'column', display: 'block'}}>
                         {item.map((item, index) => (
-                            <div onClick={() => props.small ? null : props.placeObject(item.id)} className={classnames(props.small ? styles.tile_no_hover : styles.tile)} style={{width: _SIZE_, height: _SIZE_, border: props.small ? 'solid 1px transparent' : 'solid 1px rgba(255,255,255,0.4)'}}>
+                            <div onClick={() => props.small ? null : props.placeObject(item.id)} className={classnames(props.small ? styles.tile_no_hover : styles.tile)} style={{width: _SIZE_, height: _SIZE_}}>
                                 {item.state === 'chair' ?
                                     <div 
                                         className={classnames(styles.tile_background)} 
@@ -274,16 +276,23 @@ const Hub = () => {
     const SIDEWIDTH = (100 - MAINWIDTH)/2;
     return (
         <div style={{width: '100vw', height: '100vh', backgroundColor: '#fff'}}>
+        <div style={{height: 100, width: '100%', backgroundColor: '#404040'}}>
+
+                        <img 
+                            src={title}
+                            style={{margin: 'auto', width: 925/2 + 30, height: 114/2}}
+                        />
+        </div>
             <div className={classnames(styles.splitScreen )}style={{flexDirection: 'column'}}>
                 <div style={{width: 'auto', height: '60%', flexDirection: 'row'}}>
                     <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
                     
-                        <div style={{flexDirection: 'column', position: 'fixed', top: 50, left: 40}}>
-                            <div style={{}} 
+                        <div style={{flexDirection: 'column', position: 'absolute', top: 140, left: 40}}>
+                            <div style={{maxWidth: '10vw'}} 
                             >
-                                <p>Current Action: </p>
+                                <p style={{maxWidth: '10vw'}}>Current Action: eeeeeeeeee eeeeeeee eeeeeee  eeeeeeeeeee ee eeeee</p>
                                 <br/>
-                                <p>{action.string ? action.string : ''}</p>
+                                <p style={{maxWidth: '10vw'}}>{action.string ? action.string : ''}</p>
                             </div>
 
                             <div 
