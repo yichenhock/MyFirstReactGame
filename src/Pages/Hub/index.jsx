@@ -98,7 +98,7 @@ const Board = (props) => {
                 <img style={{width: _BOARD_, height: _BOARD_,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',}} 
-                    src={props.opponent ? otherhouse : house}
+                    src={props.blue ? otherhouse : house}
                     >
                 </img>
             </div>
@@ -232,7 +232,7 @@ const Hub = () => {
             board.push(row);
             row = [];
         }
-        setState({...state, myBoard: board});
+        setState({...state, myBoard: board, yourBoard: board});
     }
 
     const getStateFunction = async() => {
@@ -275,10 +275,10 @@ const Hub = () => {
         <div style={{width: '100vw', height: '100vh', backgroundColor: '#fff'}}>
             <div className={classnames(styles.splitScreen )}style={{flexDirection: 'column'}}>
                 <div style={{width: 'auto', height: '60%', flexDirection: 'row'}}>
-                    <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: 'tan'}}>
+                    <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
                     
-                        <div style={{flexDirection: 'column'}}>
-                            <div 
+                        <div style={{flexDirection: 'column', position: 'fixed', top: 50, left: 40}}>
+                            <div style={{}} 
                             >
                                 <p>Current Action: </p>
                                 <br/>
@@ -294,28 +294,28 @@ const Hub = () => {
                         </div>
 
                     </div>
-                    <div style={{width: MAINWIDTH + '%', height: 'auto', backgroundColor: _BLACK_}}>
+                    <div style={{width: MAINWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
-                            <Board placeObject={placeObject} board={state.myBoard}/>
+                            <Board blue={player !== 1} placeObject={placeObject} board={state.myBoard}/>
                         </div>
 
                     </div>
-                    <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: _BLACK_}}>
+                    <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
                             
                         <div style={{flexDirection: 'column', marginLeft: 10}}>
                                 <p>Opponent's board </p>
                             
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
-                            <Board small opponent board={state.yourBoard}/>
+                            <Board small blue={player === 1} board={state.yourBoard}/>
                         </div>
 
                         </div>
 
                     </div>
                 </div>
-                <div style={{width: '100vw', height: '40%', backgroundColor: 'green', flexDirection: 'row', justifyContent: 'center'}}>
+                <div style={{width: '100vw', height: '40%', backgroundColor: '#404040', flexDirection: 'row', justifyContent: 'center'}}>
                 
 
                     {cards.map((item, index) => (
