@@ -249,7 +249,6 @@ const Hub = () => {
         setTurn(res.game_state.turn)
         console.log(res.game_state)
             setState({...state, p1board: res.game_state.p1board, p2board: res.game_state.p2board})
-            console.log("TURN " + res.game_state.turn)
         if(res.game_state.turn === player) {
             getRandomCard();
             setAction(0);
@@ -328,7 +327,7 @@ const Hub = () => {
                     <div style={{width: SIDEWIDTH + '%', height: 'auto', backgroundColor: '#404040'}}>
                             
                         <div style={{flexDirection: 'column', marginLeft: 10}}>
-                                <p>Opponent's board </p>
+                                <p>Opponent's board: </p>
                             
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
