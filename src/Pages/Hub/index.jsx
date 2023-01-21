@@ -248,7 +248,7 @@ const Hub = () => {
         const res = await getState();
         setTurn(res.game_state.turn)
         console.log(res.game_state)
-        if(req.game_state.subtract) {
+        if(res.game_state.subtract) {
             setScore(score - 1)
             setState({...state, subtract: false })
         }
