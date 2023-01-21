@@ -5,6 +5,7 @@ import { getState, updateState } from "../../contexts/service";
 
 import deck from "../../assets/deck.png";
 import house from "../../assets/house.png";
+import otherhouse from "../../assets/otherhouse.png";
 import grass from "../../assets/grass.png";
 import bench from "../../assets/objects/bench.png";
 
@@ -49,7 +50,7 @@ const _CARDS_ = [
 const Board = (props) => {
     const _HOUSE_ = props.small ? 240 : 464;
     const _BOARD_ = props.small ? 240 : 464;
-    const _SIZE_ = props.small ? 32 : 32;
+    const _SIZE_ = props.small ? 16 : 32;
 
     return(
         <div style={{width: '100%', height: '100%', justifyContent: 'center', position: 'relative', zIndex: 3, marginTop: _SIZE_}}>
@@ -97,7 +98,7 @@ const Board = (props) => {
                 <img style={{width: _BOARD_, height: _BOARD_,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',}} 
-                    src={house}
+                    src={props.opponent ? otherhouse : house}
                     >
                 </img>
             </div>
@@ -307,7 +308,7 @@ const Hub = () => {
                             
 
                         <div style={{position: 'relative', justifyContent: 'center', margin: '0 auto'}}>
-                            <Board small board={state.yourBoard}/>
+                            <Board small opponent board={state.yourBoard}/>
                         </div>
 
                         </div>
