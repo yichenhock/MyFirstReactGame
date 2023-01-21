@@ -241,7 +241,7 @@ const Hub = () => {
         if(player === 1) {
             setState({...state, myBoard: res.game_state.myBoard, yourBoard: res.game_state.yourBoard})
         } else {
-            setState({...state, myBoard: res.game_state.myBoard, yourBoard: res.game_state.yourBoard})
+            setState({...state, yourBoard: res.game_state.myBoard, myBoard: res.game_state.yourBoard})
         }
 
         if(res.game_state.turn === player) {
